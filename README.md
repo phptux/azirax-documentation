@@ -170,7 +170,7 @@ return new Azirax($iterator, [
 Now that we have a configuration file, let's generate the API documentation:
 
 ```bash
-$ ./bin/acdoc update /path/to/config.php
+$ ./bin/azdoc update /path/to/config.php
 ```
 
 The generated documentation can be found under the configured ``build/``
@@ -186,7 +186,7 @@ Azirax also detects problems in your phpdoc and can tell you what you need to fi
 if you add the ``-v`` option:
 
 ```bash
-$ ./bin/acdoc update /path/to/config.php -v
+$ ./bin/azdoc update /path/to/config.php -v
 ```
 
 ## Creating a Theme
