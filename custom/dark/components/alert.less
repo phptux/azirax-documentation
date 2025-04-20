@@ -1,0 +1,34 @@
+// Variables
+// ========================================================================
+
+@alert-primary-background:                      darken(tint(@global-primary-background, 40%), 45%);
+@alert-primary-color:                           lighten(tint(@global-primary-background, 30%), 10%);
+
+@alert-success-background:                      darken(tint(@global-success-background, 40%), 45%);
+@alert-success-color:                           lighten(tint(@global-success-background, 30%), 10%);
+
+@alert-warning-background:                      darken(tint(@global-warning-background, 40%), 45%);
+@alert-warning-color:                           lighten(tint(@global-warning-background, 30%), 10%);
+
+@alert-danger-background:                       darken(tint(@global-danger-background, 40%), 45%);
+@alert-danger-color:                            lighten(tint(@global-danger-background, 30%), 10%);
+
+.hook-alert-primary() {
+  background: @alert-primary-background;
+  color: @alert-primary-color;
+}
+
+.hook-alert-success() {
+  background: @alert-success-background;
+  color: @alert-success-color;
+}
+
+.hook-alert-warning() {
+  background: @alert-warning-background;
+  color: @alert-warning-color;
+}
+
+.hook-alert-danger() {
+  background: @alert-danger-background;
+  color: @alert-danger-color;
+}

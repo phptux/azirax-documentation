@@ -1,0 +1,135 @@
+@card-mini-body-padding-horizontal:           @global-margin;
+@card-mini-body-padding-vertical:             @global-margin;
+@card-mini-header-padding-horizontal:         @global-margin;
+@card-mini-header-padding-vertical:           round((@global-margin / 0.5));
+@card-mini-footer-padding-horizontal:         @global-margin;
+@card-mini-footer-padding-vertical:           round((@global-margin / 0.5));
+
+@card-success-background:                      @global-success-background;
+@card-success-color:                           @global-color;
+@card-success-title-color:                     @global-emphasis-color;
+@card-success-hover-background:                darken(@global-success-background, 5%);
+@card-success-header-border-width:             @global-border-width;
+@card-success-header-border:                   @global-border;
+@card-success-footer-border-width:             @global-border-width;
+@card-success-footer-border:                   @global-border;
+
+@card-warning-background:                      @orange-800;
+@card-warning-color:                           @global-color;
+@card-warning-title-color:                     @global-emphasis-color;
+@card-warning-hover-background:                darken(@global-warning-background, 5%);
+@card-warning-header-border-width:             @global-border-width;
+@card-warning-header-border:                   @orange-100;
+@card-warning-footer-border-width:             @global-border-width;
+@card-warning-footer-border:                   @orange-100;
+
+@card-blue-background:                      @blue;
+@card-blue-color:                           @global-color;
+@card-blue-title-color:                     @global-emphasis-color;
+@card-blue-hover-background:                darken(@blue-300, 5%);
+@card-blue-header-border-width:             @global-border-width;
+@card-blue-header-border:                   @blue-100;
+@card-blue-footer-border-width:             @global-border-width;
+@card-blue-footer-border:                   @blue-100;
+
+/* Size modifier
+ ========================================================================== */
+
+/*
+ * Mini
+ */
+
+.uk-card-mini.uk-card-body,
+.uk-card-mini .uk-card-body { padding: @card-mini-body-padding-vertical @card-mini-body-padding-horizontal; }
+
+.uk-card-mini .uk-card-header { padding: @card-mini-header-padding-vertical @card-mini-header-padding-horizontal; }
+.uk-card-mini .uk-card-footer { padding: @card-mini-footer-padding-vertical @card-mini-footer-padding-horizontal; }
+
+/*
+ * Success
+ * Note: Header and Footer are only implemented for the success style
+ */
+
+.uk-card-success {
+  background-color: @card-success-background;
+  color: @card-success-color;
+}
+
+.uk-card-success .uk-card-title {
+  color: @card-success-title-color;
+}
+
+.uk-card-success.uk-card-hover:hover {
+  background-color: @card-success-hover-background;
+}
+
+.uk-card-success .uk-card-header {
+  .hook-card-success-header();
+}
+
+.uk-card-success .uk-card-footer {
+  .hook-card-success-footer();
+}
+
+/*
+ * Warning
+ * Note: Header and Footer are only implemented for the warning style
+ */
+
+.uk-card-warning {
+  background-color: @card-warning-background;
+  color: @card-warning-color;
+}
+
+.uk-card-background-warning { background-color: @card-warning-background; }
+
+.uk-card-warning .uk-card-title {
+  color: @card-warning-title-color;
+}
+
+.uk-card-warning.uk-card-hover:hover {
+  background-color: @card-warning-hover-background;
+}
+
+.uk-card-warning .uk-card-header {
+  .hook-card-warning-header();
+}
+
+.uk-card-warning .uk-card-footer {
+  .hook-card-warning-footer();
+}
+
+/*
+ * Blue
+ * Note: Header and Footer are only implemented for the blue style
+ */
+
+.uk-card-blue {
+  background-color: @card-blue-background;
+  color: @card-blue-color;
+}
+
+.uk-card-background-blue { background-color: @card-blue-background; }
+
+.uk-card-blue .uk-card-title {
+  color: @card-blue-title-color;
+}
+
+.uk-card-blue.uk-card-hover:hover {
+  background-color: @card-blue-hover-background;
+}
+
+.uk-card-blue .uk-card-header {
+  .hook-card-blue-header();
+}
+
+.uk-card-blue .uk-card-footer {
+  .hook-card-blue-footer();
+}
+
+.hook-card-success-header() { border-bottom: @card-success-header-border-width solid @card-success-header-border; }
+.hook-card-success-footer() { border-top: @card-success-footer-border-width  solid @card-success-footer-border; }
+.hook-card-warning-header() { border-bottom: @card-warning-header-border-width solid @card-warning-header-border; }
+.hook-card-warning-footer() { border-top: @card-warning-footer-border-width  solid @card-warning-footer-border; }
+.hook-card-blue-header() { border-bottom: @card-blue-header-border-width solid @card-blue-header-border; }
+.hook-card-blue-footer() { border-top: @card-blue-footer-border-width  solid @card-blue-footer-border; }

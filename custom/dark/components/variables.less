@@ -1,0 +1,154 @@
+// UIkit Core
+@import "uikit/src/less/uikit.theme.less";
+
+// UIkit
+// ========================================================================
+
+@global-font-size:                              15px;
+
+@global-2xlarge-font-size:                      38px;
+@global-xlarge-font-size:                       30px;
+@global-large-font-size:                        24px;
+@global-medium-font-size:                       20px;
+@global-small-font-size:                        14px;
+
+@global-color:                                  @gray-100;
+@global-emphasis-color:                         @gray-300;
+@global-muted-color:                            @gray-600;
+
+@global-link-color:                             @purple-300;
+@global-link-shade-percentage:                  20%;
+@global-link-hover-color:                       tint(@global-link-color, @global-link-shade-percentage);
+
+@global-inverse-color:                          @gray-400;
+
+//
+// Backgrounds
+//
+
+@global-background:                             @gray-900;
+
+@global-muted-background:                       @gray-800;
+@global-primary-background:                     @purple;
+@global-secondary-background:                   @gray-600;
+
+@global-info-background:                        @blue;
+@global-success-background:                     @green;
+@global-warning-background:                     @orange;
+@global-danger-background:                      @red-400;
+
+//
+// Borders
+//
+
+@global-border:                                 @gray-700;
+
+//
+// Box-Shadows
+//
+
+@global-small-box-shadow:                       0 2px 8px rgba(@black, 0.15);
+@global-medium-box-shadow:                      0 5px 15px rgba(@black, 0.075);
+@global-large-box-shadow:                       0 14px 25px rgba(@black, 0.175);
+@global-xlarge-box-shadow:                      0 28px 50px rgba(@black, 0.075);
+
+//
+// Base
+//
+
+@base-code-font-size:                           12px;
+
+@base-heading-font-weight:                      300;
+
+@base-pre-font-size:                            12px;
+@base-pre-background:                           @global-muted-background;
+
+.hook-base-body() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+//
+// Container
+//
+
+@container-max-width:                           1380px;
+@container-small-max-width:                     700px;
+
+//
+// Navbar
+//
+
+@inverse-navbar-nav-item-color:                @inverse-global-color;
+@inverse-navbar-nav-item-hover-color:          @inverse-global-emphasis-color;
+
+//
+// Nav
+//
+
+@nav-header-font-size:                          12px;
+
+//
+// Subnav
+//
+
+@inverse-subnav-item-color:                     @inverse-global-color;
+@inverse-subnav-item-hover-color:               @inverse-global-emphasis-color;
+
+//
+// Tab
+//
+
+@tab-item-padding-horizontal:                   20px;
+@tab-item-padding-vertical:                     9px;
+@tab-item-border-width:                         2px;
+@tab-item-font-size:                            12px;
+
+.hook-tab-item() { line-height: 20px; }
+
+//
+// Table
+//
+
+@table-header-cell-font-size:                   12px;
+
+//
+// Label
+//
+
+@label-font-size:                               12px;
+
+//
+// Text
+//
+
+.hook-text-lead() { font-weight: 300; }
+.hook-text-large() { font-weight: 300; }
+
+//
+// Utility
+//
+
+@inverse-logo-color:                           @inverse-global-emphasis-color;
+@inverse-logo-hover-color:                     @inverse-global-emphasis-color;
+
+//
+// Off-canvas
+//
+
+@offcanvas-bar-background:                      @gray-800;
+@offcanvas-bar-color-mode:                      dark;
+
+//
+// Inverse
+//
+
+@inverse-global-color:                          fade(@global-inverse-color, 80%);
+@inverse-global-muted-color:                    fade(@global-inverse-color, 60%);
+
+//
+// Breadcrumb
+//
+
+@breadcrumb-divider:                                "\\";

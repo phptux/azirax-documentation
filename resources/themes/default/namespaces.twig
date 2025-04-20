@@ -1,0 +1,47 @@
+{% extends "layout/layout.twig" %}
+{% from "macros.twig" import namespace_link %}
+{% block title %}{% trans 'All Namespaces' %} | {{ parent() }}{% endblock %}
+{% block body_class 'namespaces' %}
+
+{% block below_menu %}
+<div class="uk-container uk-background-muted">
+    <ul class="uk-breadcrumb">
+        <li class="uk-first-column"><a href="{{ path('index.html') }}">{% trans 'Home' %}</a></li>
+        <li><span>{% trans 'Namespaces' %}</span></li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block page_content %}
+<div class="uk-container uk-container-expand">
+    <div class="uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+        <div class="uk-width-auto">
+            <h1 class="uk-heading">{% trans 'All Namespaces' %}</h1>
+        </div>
+    </div>
+    <hr class="uk-divider-icon">
+
+    <div class="uk-grid uk-grid-medium" data-uk-grid uk-sortable="handle: .sortable-icon">
+        <div class="uk-width-1-1@l">
+            {% set last_name = '' %}
+            {% for namespace in namespaces %}
+            {% set top_level = namespace|split('\\')|first %}
+            {% if top_level != last_name %}
+            {% if last_name %}</ul></div>{% endif %}
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-header">
+                    <h3 class="uk-card-title">{{ top_level|raw }}</h3>
+                </div>
+                <div class="uk-card-body">
+                    <ul class="uk-list uk-list-hyphen">
+                        {% set last_name = top_level %}
+                        {% endif %}
+                        <li>{{ namespace_link(namespace) }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

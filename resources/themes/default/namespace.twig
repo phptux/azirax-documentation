@@ -1,0 +1,77 @@
+{% extends "layout/layout.twig" %}
+{% from "macros.twig" import breadcrumbs, render_classes, class_link, namespace_link, hint_link, deprecated, function_parameters_signature, method_source_link %}
+{% block title %}{{ namespace == '' ? global_namespace_name() : namespace|raw }} | {{ parent() }}{% endblock %}
+{% block body_class 'namespace' %}
+{% block page_id 'namespace:' ~ ((namespace == '' ? global_namespace_page_name() : namespace)|replace({'\\': '_'})) %}
+
+{% block below_menu %}
+    <div class="uk-container uk-background-muted">
+        <ul class="uk-breadcrumb">
+            <li><span class="uk-label">{% trans 'Namespace' %}</span></li>
+            {{ breadcrumbs(namespace) }}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="uk-container uk-container-expand">
+        <div class="uk-grid uk-grid-medium" data-uk-grid uk-sortable="handle: .sortable-icon">
+            <div class="uk-width-1-1@l">
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-header">
+                        <h3 class="uk-card-title">{{ namespace == '' ? global_namespace_name() : namespace|raw }}</h3>
+                    </div>
+                    <div class="uk-card-body">
+                        <div class="az-namespace-list">
+                            {% for ns in subnamespaces %}{{ namespace_link(ns) }}{% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                {% if classes %}
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-header">
+                        <h3 class="uk-card-title">{% trans 'Classes' %}</h3>
+                    </div>
+                    <div class="uk-card-body">
+                        {{- render_classes(classes) -}}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if interfaces %}
+                    <div class="uk-card uk-card-default">
+                        <div class="uk-card-header">
+                            <h3 class="uk-card-title">{% trans 'Interfaces' %}</h3>
+                        </div>
+                        <div class="uk-card-body">
+                            {{- render_classes(interfaces) -}}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if functions %}
+                    <div class="uk-card uk-card-default">
+                        <div class="uk-card-header">
+                            <h3 class="uk-card-title">{% trans 'Functions' %}</h3>
+                        </div>
+                        <div class="uk-card-body">
+                            NOT implemented.
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if exceptions %}
+                    <div class="uk-card uk-card-default">
+                        <div class="uk-card-header">
+                            <h3 class="uk-card-title">{% trans 'Exceptions' %}</h3>
+                        </div>
+                        <div class="uk-card-body">
+                            {{- render_classes(exceptions) -}}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

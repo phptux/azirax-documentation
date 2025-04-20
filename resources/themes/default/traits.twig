@@ -1,0 +1,37 @@
+{% extends "layout/layout.twig" %}
+{% from "macros.twig" import class_link %}
+{% block title %}{% trans 'Traits' %} | {{ parent() }}{% endblock %}
+{% block body_class 'traits' %}
+
+{% block below_menu %}
+<div class="uk-container uk-background-muted">
+    <ul class="uk-breadcrumb">
+        <li class="uk-first-column"><a href="{{ path('index.html') }}">{% trans 'Home' %}</a></li>
+        <li><span>{% trans 'Traits' %}</span></li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block page_content %}
+<div class="uk-container uk-container-expand">
+    <div class="uk-grid uk-grid-medium" data-uk-grid uk-sortable="handle: .sortable-icon">
+        <div class="uk-width-1-1@l">
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-header">
+                    <h3 class="uk-card-title">{% trans 'Traits' %}</h3>
+                </div>
+                <div class="uk-card-body">
+                    {% for class in classes %}
+                        {% if class.trait %}
+                            <div class="uk-column-1-2">
+                                {{ class_link(class, true) }}
+                                {{ class.shortdesc|desc(class)|md_to_html }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

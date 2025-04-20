@@ -1,0 +1,54 @@
+/* -- Top navigation -- */
+#top-head {
+  z-index: 9;
+  top: 0;
+  left:0;
+  right:0;
+
+
+  /*
+   * Navbar
+   */
+  > .az-header {
+    background: linear-gradient(to left, @purple-700, @global-primary-background);
+  }
+}
+
+.text-light {
+  font-weight: 200;
+  font-size: 1.25rem;
+}
+
+.custom-logo {
+  height: 32px;
+}
+.profile-img {
+  width: 60px;
+  margin: 0 auto 10px auto;
+  display: block;
+}
+.panel-icons {
+  margin: 0 4px;
+}
+
+#content {
+  margin-top: 75px;
+  padding: 30px 0 0 0;
+  background-color: lighten(@global-background, 1);
+  margin-left: 0;
+  transition: margin 0.2s cubic-bezier(.4,0,.2,1);
+}
+@media screen and (min-width: 960px){
+  #content {
+    /* equal to left-col width */
+    margin-left: 300px;
+  }
+  #top-head {
+    /* equal to left-col width */
+    left: 300px;
+  }
+}
+
+#top-head [class*="uk-navbar-dropdown-bottom"] {
+  margin-top: 0;
+}

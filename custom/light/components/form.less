@@ -1,0 +1,49 @@
+/** Password strength */
+.php-form-password-visibility.php-form-strength-active {
+  bottom: 10px !important;
+}
+.php-form-strength {
+  width: 25%;
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  bottom: 11px;
+}
+
+.php-form-strength-bar {
+  background-color: @global-muted-background;
+  height: 5px;
+  position: relative;
+  margin-top: 5px;
+  border-radius: 10px;
+  padding-right: 40px !important;
+}
+
+.uk-input-group {
+  display: flex;
+
+  &-append {
+    display:      flex;
+    align-items:  center;
+    border:       @global-border-width solid @form-border;
+    border-right: none;
+  }
+
+  &-prepend {
+    display:     flex;
+    align-items: center;
+    border:      @global-border-width solid @form-border;
+    border-left: none;
+  }
+
+  &-text {
+    display:          flex;
+    align-items:      center;
+    line-height:      @form-line-height;
+    color:            @global-muted-color;
+    padding:          0 10px 0;
+    text-align:       center;
+    white-space:      nowrap;
+    background-color: @global-muted-background;
+  }
+}

@@ -1,0 +1,70 @@
+{% extends "layout/layout.twig" %}
+{% from "macros.twig" import class_link, namespace_link, method_link, property_link %}
+{% block title %}{% trans 'Index' %} | {{ parent() }}{% endblock %}
+{% block body_class 'doc-index' %}
+
+{% block below_menu %}
+    <div class="uk-container uk-background-muted">
+        <ul class="uk-breadcrumb">
+            <li class="uk-first-column"><a href="{{ path('index.html') }}">{% trans 'Home' %}</a></li>
+            <li><span>{% trans 'Index' %}</span></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="uk-container uk-container-expand">
+        <div class="uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+            <div class="uk-width-auto">
+                <h1 class="uk-heading">{% trans 'Index' %}</h1>
+            </div>
+        </div>
+        <hr class="uk-divider-icon">
+
+        <div class="uk-grid uk-grid-medium" data-uk-grid uk-sortable="handle: .sortable-icon">
+            <div class="uk-width-1-1@l">
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-header">
+                        <h3 class="uk-card-title">{% trans 'Classes' %}</h3>
+                    </div>
+                    <div class="uk-card-body">
+                        <ul class="uk-pagination">
+                            {% for letter in 'A'..'Z' %}
+                                {% if items[letter] is defined and items[letter]|length > 1 %}
+                                    <li><a href="#letter{{ letter|raw }}">{{ letter|raw }}</a></li>
+                                {% else %}
+                                    <li class="uk-disabled"><a href="#letter{{ letter|raw }}">{{ letter|raw }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% for letter, elements in items -%}
+                            <h2 id="letter{{ letter|raw }}">{{ letter|raw }}</h2>
+                            <dl id="index{{ letter|raw }}">
+                                {%- for element in elements %}
+                                    {%- set type = element[0] %}
+                                    {%- set value = element[1] %}
+                                    {%- if 'class' == type -%}
+                                        <dt>{{ class_link(value) }}{% if has_namespaces %} &mdash; <em>{{'Class in namespace %s'|trans|format(
+                                                    namespace_link(value.namespace)
+                                                )|raw}}{% endif %}</em></dt>
+                                        <dd>{{ value.shortdesc|desc(value)|md_to_html }}</dd>
+                                    {%- elseif 'method' == type -%}
+                                        <dt>{{ method_link(value) }}() &mdash; <em>{{ 'Method in class %s'|trans|format(
+                                                    class_link(value.class)
+                                                )|raw }}</em></dt>
+                                        <dd>{{ value.shortdesc|desc(value.class)|md_to_html }}</dd>
+                                    {%- elseif 'property' == type -%}
+                                        <dt>${{ property_link(value) }} &mdash; <em>{{ 'Property in class %s'|trans|format(
+                                                    class_link(value.class)
+                                                )|raw}}</em></dt>
+                                        <dd>{{ value.shortdesc|desc(value.class)|md_to_html }}</dd>
+                                    {%- endif %}
+                                {%- endfor %}
+                            </dl>
+                        {%- endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

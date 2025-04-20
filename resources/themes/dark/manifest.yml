@@ -1,0 +1,36 @@
+name: dark
+
+static:
+  'css/theme.min.css': 'css/theme.min.css'
+  'js/jquery-3.7.1.min.js': 'js/jquery-3.7.1.min.js'
+  'js/uikit.min.js': 'js/uikit.min.js'
+  'js/uikit-icons-material.min.js': 'js/uikit-icons-material.min.js'
+  'js/autocomplete.min.js': 'js/autocomplete.min.js'
+  'js/highlight.min.js': 'js/highlight.min.js'
+  'img/favicon/favicon.ico': 'img/favicon/favicon.ico'
+  'img/favicon/apple-touch-icon.png': 'img/favicon/apple-touch-icon.png'
+  'img/favicon/favicon-32x32.png': 'img/favicon/favicon-32x32.png'
+  'img/favicon/favicon-16x16.png': 'img/favicon/favicon-16x16.png'
+  'img/favicon/android-chrome-192x192.png': 'img/favicon/android-chrome-192x192.png'
+  'img/favicon/android-chrome-512x512.png': 'img/favicon/android-chrome-512x512.png'
+  'img/favicon/site.webmanifest': 'img/favicon/site.webmanifest'
+  'img/logo.png': 'img/logo.png'
+
+global:
+  'index.twig': 'index.html'
+  'doc-index.twig': 'doc-index.html'
+  'namespaces.twig': 'namespaces.html'
+  'classes.twig': 'classes.html'
+  'enums.twig': 'enums.html'
+  'interfaces.twig': 'interfaces.html'
+  'traits.twig': 'traits.html'
+  'opensearch.twig': 'opensearch.xml'
+  'search.twig': 'search.html'
+  'azirax.js.twig': 'azirax.js'
+  'azirax-search.json.twig': 'azirax-search.json'
+
+namespace:
+  'namespace.twig': '%s.html'
+
+class:
+  'class.twig': '%s.html'

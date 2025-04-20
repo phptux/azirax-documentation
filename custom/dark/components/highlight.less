@@ -1,0 +1,102 @@
+/*
+ * UIkit Theme for Highlight.js
+ */
+
+.hljs {
+  display: block;
+  color: @gray-100;
+}
+
+.hljs-comment,
+.hljs-meta { color: #969896; }
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote { color: @global-danger-background; }
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type { color: @blue-600; }
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute { color: #0086b3; }
+
+.hljs-section,
+.hljs-name { color: #63a35c; }
+
+.hljs-tag { color: @gray-500; }
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo { color: #CC7832; }
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link { text-decoration: underline; }
+
+.hljs-ln- {
+  &numbers {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    text-align: center;
+    color: @gray-600;
+    border-right: 1px solid @gray-500;
+    vertical-align: top;
+    padding-right: 5px !important;
+  }
+
+  &code {
+    padding-left: 10px !important;
+  }
+
+  &marker {
+    background-color: @alert-danger-background;
+    color: @alert-danger-color;
+  }
+}
+
+// PHP
+.hljs-string {
+  color: #6A8759;
+}
+.hljs-subst {
+  color: #A5C25C;
+  font-weight: bold;
+}
+.hljs-keyword,
+.hljs-built_in {
+  color: #CC7832;
+}
+.hljs-variable {
+  color: #9876AA;
+}
+.hljs-object,
+.hljs-title.class_,
+.hljs-title.function_.invoke__{
+  color: #FFC66D;
+}
+.hljs-class-property {
+  color: @global-muted-color;
+  font-size: 9px;
+}

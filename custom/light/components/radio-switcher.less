@@ -1,0 +1,97 @@
+@radio-switcher-background: @checkbox-switcher-background;
+@radio-switcher-slider-inactive-background: @checkbox-switcher-slider-inactive-background;
+@radio-switcher-slider-background: @checkbox-switcher-slider-background;
+@radio-switcher-slider-border-color: @checkbox-switcher-slider-border-color;
+
+@radio-switcher-primary-background: @checkbox-switcher-primary-background;
+@radio-switcher-slider-primary-background: @checkbox-switcher-slider-primary-background;
+
+@radio-switcher-success-background: @checkbox-switcher-success-background;
+@radio-switcher-slider-success-background: @checkbox-switcher-slider-success-background;
+
+@radio-switcher-warning-background: @checkbox-switcher-warning-background;
+@radio-switcher-slider-warning-background: @checkbox-switcher-slider-warning-background;
+
+@radio-switcher-danger-background: @checkbox-switcher-danger-background;
+@radio-switcher-slider-danger-background: @checkbox-switcher-slider-danger-background;
+
+.uk-radio-switcher {
+    position: relative;
+    top: 5px;
+    height: 26px;
+    width: 120px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    margin: 0 0 5px;
+
+    &-label {
+        position: relative;
+        z-index: 2;
+        float: left;
+        width: 58px;
+        line-height: 26px;
+        font-size: @button-font-size;
+        color: @gray-600;
+        text-align: center;
+        cursor: pointer;
+
+        &:active {
+            font-weight: bold;
+        }
+
+        &-off {
+            padding-left: 2px;
+        }
+
+        &-on {
+            padding-right: 2px;
+        }
+    }
+
+    &-input {
+        display: none;
+
+        &:checked + .uk-radio-switcher-label {
+            color: @global-color;
+            text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+            -webkit-transition: 0.15s ease-out;
+            -moz-transition: 0.15s ease-out;
+            -o-transition: 0.15s ease-out;
+            transition: 0.15s ease-out;
+        }
+
+        &:checked + .uk-radio-switcher-label-on ~ .uk-radio-switcher-selection {
+            /* Note: left: 50% doesn't transition in WebKit */
+
+            left: 60px;
+        }
+    }
+
+    &-selection {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 2px;
+        left: 2px;
+        width: 58px;
+        height: 22px;
+        background: @radio-switcher-primary-background;
+        background-image: linear-gradient(to bottom, darken(@radio-switcher-slider-primary-background, 10%), @radio-switcher-primary-background);
+        border-radius: 3px;
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+        transition: left 0.15s ease-out;
+    }
+}
+
+.uk-radio-switcher-success .uk-radio-switcher-selection {
+    background: @radio-switcher-success-background;
+    background-image: linear-gradient(to bottom, darken(@radio-switcher-slider-success-background, 10%), @radio-switcher-success-background);
+}
+.uk-radio-switcher-warning .uk-radio-switcher-selection {
+    background: @radio-switcher-warning-background;
+    background-image: linear-gradient(to bottom, darken(@radio-switcher-slider-warning-background, 10%), @radio-switcher-warning-background);
+}
+.uk-radio-switcher-danger .uk-radio-switcher-selection {
+    background: @radio-switcher-danger-background;
+    background-image: linear-gradient(to bottom, darken(@radio-switcher-slider-danger-background, 10%), @radio-switcher-danger-background);
+}

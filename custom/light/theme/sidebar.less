@@ -1,0 +1,113 @@
+///
+// VARIABLES
+///
+@az-autocomplete-bg: @global-muted-background;
+@az-autocomplete-color: @global-muted-color;
+
+/* Left bar */
+#sidebar {
+  position: fixed;
+  left: 0;
+  top:0;
+  bottom:0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: @global-background;
+  width: 299px;
+  z-index:2;
+  transition: height 0.3s ease-out;
+  border-right: 1px solid @global-border;
+}
+
+.left-content-box {
+  padding: 0.75rem 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: -1px;
+}
+
+.left-nav-wrap {
+  padding-bottom: 60px;
+}
+
+.left-logo {
+  /* navbar height */
+  height: 52px;
+  line-height: 52px;
+  padding: 0 20px;
+}
+
+#api-tree {
+
+  .bd {
+    display: none;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 0;
+      margin: 0;
+
+      > .hd span {
+        cursor: pointer;
+      }
+
+      &.opened {
+        > .hd span {
+          -webkit-transform: rotate(90deg);
+          -moz-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+        }
+
+        > .bd {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+/** Typeahead */
+
+.auto-complete-results {
+  min-width: 295px;
+  z-index: 1;
+}
+
+.auto-complete-dropdown-menu {
+  overflow: auto;
+  max-height: 300px;
+  margin-top: 9px;
+  background-color: @az-autocomplete-bg;
+  color: @az-autocomplete-color;
+  border: 1px solid @global-border;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+}
+
+.auto-complete-result {
+  padding: 8px;
+  border-bottom: 1px solid @global-border;
+  cursor: pointer;
+}
+
+.auto-complete-selected,
+.auto-complete-result:hover {
+  background-color: @global-primary-background;
+  color: #fff;
+}
+
+.auto-complete-selected > mark.auto-complete-highlight, .auto-complete-result:hover > mark.auto-complete-highlight {
+  color: #fff;
+}
+
+.auto-complete-highlight {
+  padding: 0;
+  font-weight: bold;
+  background-color: transparent;
+}

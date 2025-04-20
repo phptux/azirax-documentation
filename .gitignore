@@ -1,0 +1,6 @@
+node_modules
+vendor
+.env
+.php-cs-fixer.cache
+composer.json
+generate-api.php
