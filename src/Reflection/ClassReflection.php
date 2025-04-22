@@ -737,7 +737,7 @@ class ClassReflection extends Reflection implements ClassReflectionInterface
     }
 
     /**
-     * Check, if they class an Phalcon Framework class.
+     * Check, if they class a Phalcon Framework class.
      *
      * @return bool
      */

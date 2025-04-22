@@ -499,11 +499,41 @@ class Project
     public function getProjectClasses(): array
     {
         $classes = array_filter($this->classes, function ($class) {
-            return $class->isProjectClass();
+            return $class->isProjectClass() && $class->isClass();
         });
         ksort($classes);
 
         return $classes;
+    }
+
+    /**
+     * Returns all project enums.
+     *
+     * @return array
+     */
+    public function getProjectEnums(): array
+    {
+        $enums = array_filter($this->classes, function ($class) {
+            return $class->isProjectClass() && $class->isEnum();
+        });
+        ksort($enums);
+
+        return $enums;
+    }
+
+    /**
+     * Returns all project traits.
+     *
+     * @return array
+     */
+    public function getProjectTraits(): array
+    {
+        $traits = array_filter($this->classes, function ($class) {
+            return $class->isProjectClass() && $class->isTrait();
+        });
+        ksort($traits);
+
+        return $traits;
     }
 
     /**

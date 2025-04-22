@@ -391,6 +391,8 @@ class Renderer
             'namespaces'   => $project->getNamespaces(),
             'interfaces'   => $project->getProjectInterfaces(),
             'classes'      => $project->getProjectClasses(),
+            'traits'       => $project->getProjectTraits(),
+            'enums'        => $project->getProjectEnums(),
             'functions'    => $project->getProjectFunctions(),
             'items'        => $this->getIndex($project),
             'index'        => $this->indexer->getIndex($project),
@@ -441,6 +443,8 @@ class Renderer
                 'functions'     => $project->getNamespaceFunctions($namespace),
                 'classes'       => $project->getNamespaceClasses($namespace),
                 'interfaces'    => $project->getNamespaceInterfaces($namespace),
+                'traits'       => $project->getProjectTraits(),
+                'enums'        => $project->getProjectEnums(),
                 'exceptions'    => $project->getNamespaceExceptions($namespace),
                 'tree'          => $this->getTree($project),
             ];

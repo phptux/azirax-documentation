@@ -50,6 +50,28 @@
                     </div>
                 {% endif %}
 
+                {% if traits %}
+                    <div class="uk-card uk-card-default">
+                        <div class="uk-card-header">
+                            <h3 class="uk-card-title">{% trans 'Traits' %}</h3>
+                        </div>
+                        <div class="uk-card-body">
+                            {{- render_classes(traits) -}}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if enums %}
+                    <div class="uk-card uk-card-default">
+                        <div class="uk-card-header">
+                            <h3 class="uk-card-title">{% trans 'Enums' %}</h3>
+                        </div>
+                        <div class="uk-card-body">
+                            {{- render_classes(enums) -}}
+                        </div>
+                    </div>
+                {% endif %}
+
                 {% if functions %}
                     <div class="uk-card uk-card-default">
                         <div class="uk-card-header">
