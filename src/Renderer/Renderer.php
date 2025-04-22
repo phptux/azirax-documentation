@@ -443,8 +443,8 @@ class Renderer
                 'functions'     => $project->getNamespaceFunctions($namespace),
                 'classes'       => $project->getNamespaceClasses($namespace),
                 'interfaces'    => $project->getNamespaceInterfaces($namespace),
-                'traits'       => $project->getProjectTraits(),
-                'enums'        => $project->getProjectEnums(),
+                'traits'        => $project->getNamespaceTraits($namespace),
+                'enums'         => $project->getNamespaceEnums($namespace),
                 'exceptions'    => $project->getNamespaceExceptions($namespace),
                 'tree'          => $this->getTree($project),
             ];
