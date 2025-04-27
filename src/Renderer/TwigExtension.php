@@ -85,6 +85,10 @@ class TwigExtension extends AbstractExtension
     public static function abbrClass(ClassReflectionInterface|string $class, bool $absolute = false): string
     {
         if ($class instanceof ClassReflectionInterface) {
+            if ($class->isPhalconClass()) {
+                return $class->getName();
+            }
+
             $short = $class->getShortName();
             $class = $class->getName();
 
