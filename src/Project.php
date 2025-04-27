@@ -377,6 +377,8 @@ class Project
             $this->getNamespaceExceptions($namespace),
             $this->getNamespaceInterfaces($namespace),
             $this->getNamespaceClasses($namespace),
+            $this->getNamespaceTraits($namespace),
+            $this->getNamespaceEnums($namespace),
         );
 
         ksort($classes);
@@ -398,12 +400,32 @@ class Project
         }
 
         $classes = array_filter($this->namespaceClasses[$namespace], function ($class) {
-            return $class->isProjectClass() && $class->isClass();
+            return $class->isClass();
         });
-
         ksort($classes);
 
         return $classes;
+    }
+
+    /**
+     * Returns all traits from a namespace.
+     *
+     * @param string $namespace Namespace name
+     *
+     * @return ClassReflectionInterface[]
+     */
+    public function getNamespaceTraits(string $namespace): array
+    {
+        if (!isset($this->namespaceClasses[$namespace])) {
+            return [];
+        }
+
+        $traits = array_filter($this->namespaceClasses[$namespace], function ($class) {
+            return $class->isTrait();
+        });
+        ksort($traits);
+
+        return $traits;
     }
 
     /**
@@ -422,7 +444,6 @@ class Project
         $enums = array_filter($this->namespaceClasses[$namespace], function ($class) {
             return $class->isEnum();
         });
-
         ksort($enums);
 
         return $enums;
@@ -481,27 +502,7 @@ class Project
 
         return $this->namespaceInterfaces[$namespace];
     }
-    /**
-     * Returns all traits from a namespace.
-     *
-     * @param string $namespace Namespace name
-     *
-     * @return ClassReflectionInterface[]
-     */
-    public function getNamespaceTraits(string $namespace): array
-    {
-        if (!isset($this->namespaceClasses[$namespace])) {
-            return [];
-        }
 
-        $traits = array_filter($this->namespaceClasses[$namespace], function ($class) {
-            return $class->isTrait();
-        });
-
-        ksort($traits);
-
-        return $traits;
-    }
     /**
      * Returns all sub namespaces.
      *
@@ -553,21 +554,6 @@ class Project
     }
 
     /**
-     * Returns all project enums.
-     *
-     * @return array
-     */
-    public function getProjectEnums(): array
-    {
-        $enums = array_filter($this->classes, function ($class) {
-            return $class->isProjectClass() && $class->isEnum();
-        });
-        ksort($enums);
-
-        return $enums;
-    }
-
-    /**
      * Returns all project traits.
      *
      * @return array
@@ -580,6 +566,21 @@ class Project
         ksort($traits);
 
         return $traits;
+    }
+
+    /**
+     * Returns all project enums.
+     *
+     * @return array
+     */
+    public function getProjectEnums(): array
+    {
+        $enums = array_filter($this->classes, function ($class) {
+            return $class->isProjectClass() && $class->isEnum();
+        });
+        ksort($enums);
+
+        return $enums;
     }
 
     /**

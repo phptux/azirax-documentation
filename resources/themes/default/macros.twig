@@ -95,15 +95,53 @@
 {%- endmacro %}
 
 {% macro render_classes(classes) -%}
-    {% from _self import class_link, deprecated %}
+    {% from _self import render_class_details %}
 
     {% for class in classes %}
-        <div class="uk-column-1-2">
-            {{- class_link(class, true) -}}
-            {{- deprecated(class) -}}
-            {{- class.shortdesc|desc(class)|md_to_html -}}
-        </div>
+        {% if class.isClass %}
+            {{ render_class_details(class) }}
+        {% endif %}
     {% endfor %}
+{%- endmacro %}
+
+{% macro render_traits(traits) -%}
+    {% from _self import render_class_details %}
+
+    {% for trait in traits %}
+        {% if trait.isTrait %}
+            {{ render_class_details(trait) }}
+        {% endif %}
+    {% endfor %}
+{%- endmacro %}
+
+{% macro render_enums(enums) -%}
+    {% from _self import render_class_details %}
+
+    {% for enum in enums %}
+        {% if enum.isEnum %}
+            {{ render_class_details(enum) }}
+        {% endif %}
+    {% endfor %}
+{%- endmacro %}
+
+{% macro render_interfaces(interfaces) -%}
+    {% from _self import render_class_details %}
+
+    {% for interface in interfaces %}
+        {% if interface.isInterface %}
+            {{ render_class_details(interface) }}
+        {% endif %}
+    {% endfor %}
+{%- endmacro %}
+
+{% macro render_class_details(class) -%}
+    {% from _self import class_link, deprecated %}
+
+    <div class="uk-column-1-2">
+        {{- class_link(class, true) -}}
+        {{- deprecated(class) -}}
+        {{- class.shortdesc|desc(class)|md_to_html -}}
+    </div>
 {%- endmacro %}
 
 {% macro breadcrumbs(namespace) %}

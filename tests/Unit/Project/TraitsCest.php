@@ -15,18 +15,31 @@
 */
 declare(strict_types = 1);
 
-namespace Azirax\Documentation\Tests\Source;
+namespace Azirax\Documentation\Tests\Unit\Project;
 
-/**
- * Test Trait
- *
- * @package      Azirax\Documentation\Tests\Source
- * @author       Rene Dziuba <php.tux@web.de>
- * @author       Fabien Potencier <fabien@symfony.com>
- * @copyright    Copyright (c) 2025 The Authors
- * @license      <https://opensource.org/license/mit> MIT License
- */
-trait TestTrait
+use UnitTester;
+
+trait TraitsCest
 {
+    /**
+     * Tests Azirax\Documentation\Project :: update() - traits
+     *
+     * @param UnitTester $I
+     *
+     * @return void
+     *
+     * @author Azirax Team <php.tux@web.de>
+     * @since  2025-04-17
+     */
+    public function projectUpdate(UnitTester $I): void
+    {
+        $I->wantToTest('project - update() - traits');
 
+        $azirax  = $I->getAzirax(false, 'traits');
+        $project = $azirax->getService('project');
+        $project->setParser($azirax->getService('parser'));
+        //$azirax->getService('store')->flushProject($project);
+
+        $project->update(null, true);
+    }
 }

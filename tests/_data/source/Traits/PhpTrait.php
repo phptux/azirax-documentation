@@ -15,18 +15,18 @@
 */
 declare(strict_types = 1);
 
-namespace Azirax\Documentation\Tests\Source;
+namespace Azirax\Documentation\Tests\Source\Traits;
 
 /**
- * Test Trait
+ * Trait test
  *
- * @package      Azirax\Documentation\Tests\Source
+ * @package      Azirax\Documentation\Tests\Source\Traits
  * @author       Rene Dziuba <php.tux@web.de>
  * @author       Fabien Potencier <fabien@symfony.com>
  * @copyright    Copyright (c) 2025 The Authors
  * @license      <https://opensource.org/license/mit> MIT License
  */
-trait TestTrait
+trait PhpTrait
 {
 
 }

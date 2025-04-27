@@ -62,6 +62,15 @@ class Index
             foreach ($project->getProjectClasses() as $class) {
                 $this->classes[$class->getName()] = $class->getHash();
             }
+            foreach ($project->getProjectInterfaces() as $class) {
+                $this->classes[$class->getName()] = $class->getHash();
+            }
+            foreach ($project->getProjectTraits() as $class) {
+                $this->classes[$class->getName()] = $class->getHash();
+            }
+            foreach ($project->getProjectEnums() as $class) {
+                $this->classes[$class->getName()] = $class->getHash();
+            }
         }
 
         if (null !== $project) {

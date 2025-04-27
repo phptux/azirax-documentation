@@ -30,8 +30,8 @@
                     <div class="uk-card-body">
                         <ul class="uk-pagination">
                             {% for letter in 'A'..'Z' %}
-                                {% if items[letter] is defined and items[letter]|length > 1 %}
-                                    <li><a href="#letter{{ letter|raw }}">{{ letter|raw }}</a></li>
+                                {% if items[letter] is defined and items[letter]|length > 0 %}
+                                    <li><a href="#letter{{ letter|raw }}"  uk-scroll>{{ letter|raw }}</a></li>
                                 {% else %}
                                     <li class="uk-disabled"><a href="#letter{{ letter|raw }}">{{ letter|raw }}</a></li>
                                 {% endif %}
@@ -62,6 +62,7 @@
                                 {%- endfor %}
                             </dl>
                         {%- endfor %}
+                        <a href="#" uk-totop uk-scroll></a>
                     </div>
                 </div>
             </div>

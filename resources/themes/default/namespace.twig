@@ -1,5 +1,5 @@
 {% extends "layout/layout.twig" %}
-{% from "macros.twig" import breadcrumbs, render_classes, class_link, namespace_link, hint_link, deprecated, function_parameters_signature, method_source_link %}
+{% from "macros.twig" import breadcrumbs, render_classes, render_interfaces, render_traits, render_interfaces, render_enums, class_link, namespace_link, hint_link, deprecated, function_parameters_signature, method_source_link %}
 {% block title %}{{ namespace == '' ? global_namespace_name() : namespace|raw }} | {{ parent() }}{% endblock %}
 {% block body_class 'namespace' %}
 {% block page_id 'namespace:' ~ ((namespace == '' ? global_namespace_page_name() : namespace)|replace({'\\': '_'})) %}
@@ -45,7 +45,7 @@
                             <h3 class="uk-card-title">{% trans 'Interfaces' %}</h3>
                         </div>
                         <div class="uk-card-body">
-                            {{- render_classes(interfaces) -}}
+                            {{- render_interfaces(interfaces) -}}
                         </div>
                     </div>
                 {% endif %}
@@ -56,7 +56,7 @@
                             <h3 class="uk-card-title">{% trans 'Traits' %}</h3>
                         </div>
                         <div class="uk-card-body">
-                            {{- render_classes(traits) -}}
+                            {{- render_traits(traits) -}}
                         </div>
                     </div>
                 {% endif %}
@@ -67,7 +67,7 @@
                             <h3 class="uk-card-title">{% trans 'Enums' %}</h3>
                         </div>
                         <div class="uk-card-body">
-                            {{- render_classes(enums) -}}
+                            {{- render_enums(enums) -}}
                         </div>
                     </div>
                 {% endif %}

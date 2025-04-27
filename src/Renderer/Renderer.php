@@ -22,6 +22,7 @@ use Azirax\Documentation\Message;
 use Azirax\Documentation\Project;
 use Azirax\Documentation\Reflection\Interfaces\ClassReflectionInterface;
 use Azirax\Documentation\Reflection\Interfaces\MethodReflectionInterface;
+use Azirax\Documentation\Reflection\Interfaces\ReflectionInterface;
 use Azirax\Documentation\Tree;
 use Azirax\Documentation\TreeNode;
 use Symfony\Component\Filesystem\Filesystem;
@@ -247,7 +248,7 @@ class Renderer
     {
         $items = [];
 
-        foreach ($project->getProjectClasses() as $class) {
+        $saveItem = function (ReflectionInterface $class, array &$items) {
             $letter           = strtoupper(substr($class->getShortName(), 0, 1));
             $items[$letter][] = ['class', $class];
 
@@ -260,6 +261,22 @@ class Renderer
                 $letter           = strtoupper(substr($method->getName(), 0, 1));
                 $items[$letter][] = ['method', $method];
             }
+        };
+
+        foreach ($project->getProjectClasses() as $class) {
+            $saveItem($class, $items);
+        }
+
+        foreach ($project->getProjectInterfaces() as $class) {
+            $saveItem($class, $items);
+        }
+
+        foreach ($project->getProjectTraits() as $class) {
+            $saveItem($class, $items);
+        }
+
+        foreach ($project->getProjectEnums() as $class) {
+            $saveItem($class, $items);
         }
         ksort($items);
 
@@ -352,7 +369,7 @@ class Renderer
             'properties' => $properties,
             'methods'    => $methods,
             'constants'  => $constants,
-            'traits'     => $traits,
+            'classTraits'=> $traits,
             'tree'       => $this->getTree($project),
         ];
     }
@@ -476,7 +493,7 @@ class Renderer
 
         $dirs = $this->theme->getTemplateDirs();
         foreach ($this->theme->getTemplates('static') as $template => $target) {
-            foreach (array_reverse($dirs) as $dir) {
+            foreach (/*array_reverse($dirs)*/$dirs as $dir) {
                 if (file_exists($dir . '/' . $template)) {
                     $this->filesystem->copy($dir . '/' . $template, $project->getBuildDir() . '/' . $target);
 
@@ -540,27 +557,14 @@ class Renderer
                 ];
             }
 
-            foreach ($project->getProjectClasses() as $class) {
-                $classItem = [
-                    't' => $class->isTrait() ? 'T' : 'C',
-                    'n' => $class->__toString(),
-                    'p' => $twigExtension->pathForClass([], $class->__toString()),
-                    'd' => $twigExtension->markdownToHtml(
-                        $twigExtension->parseDesc($class->getShortDesc(), $class),
-                    ),
-                ];
-                if ($class->getNamespace() !== null) {
-                    $classItem['f'] = [
-                        'n' => $class->getNamespace() === '' ? Tree::getGlobalNamespaceName() : $class->getNamespace(),
-                        'p' => $twigExtension->pathForNamespace([], $class->getNamespace()),
-                    ];
-                }
-                $items[]      = $classItem;
-                $classMethods = array_values($class->getMethods());
-                if (count($classMethods) > 0) {
-                    array_push($methods, ...$classMethods);
-                }
-            }
+            // Classes
+            $this->getSearchIndexFor($items, $methods, $project->getProjectClasses(), 'class', $twigExtension);
+
+            // Traits
+            $this->getSearchIndexFor($items, $methods, $project->getProjectTraits(), 'trait', $twigExtension);
+
+            // Enums
+            $this->getSearchIndexFor($items, $methods, $project->getProjectEnums(), 'enum', $twigExtension);
 
             foreach ($project->getProjectInterfaces() as $interface) {
                 $nsItem = [
@@ -639,5 +643,56 @@ class Renderer
             $this->cachedTree[$key],
             JSON_UNESCAPED_SLASHES,
         );
+    }
+
+    /**
+     * Generate the search index for classes, traits, and enums.
+     *
+     * @param array                       $items         Items array
+     * @param MethodReflectionInterface[] $methods       Array with methods
+     * @param ClassReflectionInterface[]  $classes       Array with class objects
+     * @param string                      $type          Type. E.g., class, trait or enum
+     * @param TwigExtension               $twigExtension Extension object
+     *
+     * @return void
+     */
+    private function getSearchIndexFor(array &$items, array $methods, array $classes, string $type, TwigExtension $twigExtension): void
+    {
+        switch ($type) {
+            case 'class':
+            default:
+                $searchType = 'C';
+                break;
+
+            case 'trait':
+                $searchType = 'T';
+                break;
+
+            case 'enum':
+                $searchType = 'E';
+                break;
+        }
+
+        foreach ($classes as $class) {
+            $classItem = [
+                't' => $searchType,
+                'n' => $class->__toString(),
+                'p' => $twigExtension->pathForClass([], $class->__toString()),
+                'd' => $twigExtension->markdownToHtml(
+                    $twigExtension->parseDesc($class->getShortDesc(), $class),
+                ),
+            ];
+            if ($class->getNamespace() !== null) {
+                $classItem['f'] = [
+                    'n' => $class->getNamespace() === '' ? Tree::getGlobalNamespaceName() : $class->getNamespace(),
+                    'p' => $twigExtension->pathForNamespace([], $class->getNamespace()),
+                ];
+            }
+            $items[]      = $classItem;
+            $classMethods = array_values($class->getMethods());
+            if (count($classMethods) > 0) {
+                array_push($methods, ...$classMethods);
+            }
+        }
     }
 }

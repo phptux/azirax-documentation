@@ -1,5 +1,5 @@
 {% extends "layout/layout.twig" %}
-{% from "macros.twig" import class_link %}
+{% from "macros.twig" import render_enums %}
 {% block title %}{% trans 'Enums' %} | {{ parent() }}{% endblock %}
 {% block body_class 'enums' %}
 
@@ -21,14 +21,7 @@
                     <h3 class="uk-card-title">{% trans 'Enums' %}</h3>
                 </div>
                 <div class="uk-card-body">
-                    {% for class in classes %}
-                        {% if class.enum %}
-                            <div class="uk-column-1-2">
-                                {{ class_link(class, true) }}
-                                {{ class.shortdesc|desc(class)|md_to_html }}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    {{ render_enums(enums) }}
                 </div>
             </div>
         </div>
