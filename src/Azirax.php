@@ -70,7 +70,7 @@ class Azirax
     /**
      * Version: Minor
      */
-    public const int VERSION_MINOR = 0;
+    public const int VERSION_MINOR = 1;
 
     /**
      * Version: Patch
